@@ -38,11 +38,18 @@ As ferramentas sozinhas não são DevOps, o que as tornam DevOps é a forma que 
 Objetivos de um ambiente com práticas DevOps:
 
 • Melhorar a frequência dos deploys;
+
 • Automatizar processos;
+
 • Diminuir a ocorrência de erros em novas versões;
+
 • Curtos períodos de tempo para mudanças e melhorias;
+
 • Recuperação rápida em caso de falhas no ambiente;
+
 • Padronização nos processos de configuração e servidores;
+
+
 
 ## Automação de infraestrutura
 
@@ -74,15 +81,11 @@ ansible-automation       | 2     | 2048MB      | 192.168.56.10 | ubuntu/focal64 
 docker-host    | 2     | 2048MB        | 192.168.56.20 | ubuntu/focal64 | 
 
 
-
-
 ```git clone https://github.com/silvemerson/ansible-quinta-as-quinze.git```
 
 ```cd ansible-quinta-as-quinze/infra/```
 
 ```vagrant up```
-
-
 
 ## Ansible
 
