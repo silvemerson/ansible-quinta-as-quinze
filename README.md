@@ -140,11 +140,8 @@ Exemplo de Task:
 
 ### O que é o Ansible Inventory
 
-É o arquivo de referência 
+O Ansible rastreia recursos de configuração preservando listas, chamadas de listas de inventário, como arquivos simples (às vezes chamados de arquivo de host). Essas listas de inventário podem ser estáticas ou dinâmicas. 
 
-### 
-- o que é o ansible galaxy
-- o que é cada diretório daquele
 
 ### Instalando o Ansible
 
