@@ -1,0 +1,14 @@
+---
+
+- name: Copiando get-docker.sh
+  ansible.builtin.copy:
+    src: files/get-docker.sh
+    dest: /root/get-docker.sh
+
+- name: Executa script
+  command: sh /root/get-docker.sh
+  
+- name: Start Docker, if not started
+  ansible.builtin.service:
+    name: docker
+    state: started
