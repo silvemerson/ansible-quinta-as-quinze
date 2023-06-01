@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+vms = {
+  "ansible-automation" => {"memory"=>"2048", "cpus"=>"2", "ip" => "10" , 'box' => 'silvemerson/ubuntu-20-04-ansible'},
+  "docker-host"        => {"memory"=>"2048" , "cpus"=>"2", "ip" => "20" , 'box' => 'silvemerson/ubuntu-20-04-ansible'}
+}
+
+Vagrant.configure("2") do |config|
+    
+  vms.each do |name, conf|
+    config.vm.define "#{name}" do |k|
+      k.vm.box = "#{conf['box']}"
+      k.vm.hostname = "#{name}"
+      k.vm.network 'private_network', ip: "192.168.56.#{conf['ip']}"
+      k.vm.provider 'virtualbox' do |vb|
+        vb.memory = conf['memory']
+        vb.cpus = conf['cpus']
+      end
+      k.vm.provision "shell", inline: <<-'SHELL'
+        apt-get update
+        apt-get install -y vim nano curl sshpass
+        sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+        export ANSIBLE_HOST_KEY_CHECKING=False
+        useradd -m -d /home/devops -s /bin/bash devops
+        usermod -aG sudo devops
+        echo -e "devops\ndevops" | passwd devops
+        systemctl restart sshd
+      SHELL
+      end
+  end
+end
